@@ -1,30 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Djangogirls Blog</title>
-</head>
-<body>
-    <div>
-    <h1>Bienvenido al comienzo de algo grande</h1>    
-    <h2>¿Que es esto?</h2>
-    <p>El inicio de un gran proyecto, son los primeros pasos en este gran camino que nos aguarda.
-    </p>
-    <a href="https://djangogirls.org">link</a>
-    </div>
+{% extends 'blog/base.html' %}
 
+{% block content %}
     {% for post in posts %}
-    
-    <div>
-        <p> publicado: {{ post.published_date }}</p>
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
     </div>
-{% endfor %}
-
-</body>
-</html>
-
-
+    {% endfor %}
+{% endblock %}
+                
